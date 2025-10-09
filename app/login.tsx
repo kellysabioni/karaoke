@@ -1,0 +1,14 @@
+// app/(auth)/login.js
+import React from "react";
+import { View, Text, Button } from "react-native";
+import { router } from "expo-router";
+
+export default function Login() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Tela de Login</Text>
+      <Button title="Entrar" onPress={() => router.replace("/home")} />
+      <Button title="Criar Conta" onPress={() => router.push("/cadastro")} />
+    </View>
+  );
+}
