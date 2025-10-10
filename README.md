@@ -14,7 +14,9 @@ Projeto utilizando react native
 
 - `npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar`
 
-Em caso de incompatibilidade com react-dom:
+---
+
+### Em caso de incompatibilidade com react-dom:
 
 1. **_Limpe o cache do npm:_** Isso garante que você está começando de um estado limpo, sem resquícios de instalações anteriores.
 
@@ -27,3 +29,37 @@ Em caso de incompatibilidade com react-dom:
 Se o erro persistir, você pode usar uma flag de força, mas saiba que isso pode causar problemas no futuro se as bibliotecas não forem realmente compatíveis. **_Use com cautela._**
 
 - `npm install --legacy-peer-deps`
+
+---
+
+### Em caso de Incompatibilidade com o Expo
+
+**_Passo a Passo_**
+
+1.  **Atualizar o pacote `expo`**
+
+    Abra o terminal na pasta do seu projeto e execute o seguinte comando:
+
+    `npm install expo@54.0.13`
+
+    Isso vai atualizar o pacote principal do Expo para a versão recomendada que é compatível com o seu projeto.
+
+2.  **Atualizar o pacote `expo-router`**
+
+    Em seguida, atualize o pacote `expo-router` para garantir que o roteador da sua aplicação também esteja na versão correta:
+
+    `npm install expo-router@~6.0.12`
+
+3.  **Atualizar os pacotes `react` e `react-dom`**
+
+    Agora, atualize os pacotes `react` e `react-dom`. É crucial que a versão do React seja compatível com o Expo para evitar erros.
+
+    `npm install react@19.1.0 react-dom@19.1.0`
+
+4.  **Verificar se as atualizações foram bem-sucedidas**
+
+    Para confirmar se todos os pacotes foram instalados corretamente nas versões desejadas, use o comando `npm ls`. Ele vai listar a versão instalada de cada dependência especificada:
+
+    `npm ls react react-dom expo-router`
+
+---
