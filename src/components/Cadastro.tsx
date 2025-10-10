@@ -20,7 +20,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      // lembre-se de adicionar Image nas imports: import{" "}
+      {/*lembre-se de adicionar Image nas imports: import*/}
       <Image
         source={require("../../assets/logo.png")} // ou: { uri: 'https://exemplo.com/logo.png' }
         style={{
