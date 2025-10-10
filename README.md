@@ -63,3 +63,19 @@ Se o erro persistir, você pode usar uma flag de força, mas saiba que isso pode
     `npm ls react react-dom expo-router`
 
 ---
+
+### Instalação para utilização SUPABASE
+
+`npm install @supabase/supabase-js`
+
+Criar o arquivo conforme indicado abaixo
+
+```bash
+// src/supabase/client.ts
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "SUA_URL_DO_SUPABASE";
+const supabaseAnonKey = "SUA_ANON_KEY_DO_SUPABASE";
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+```
