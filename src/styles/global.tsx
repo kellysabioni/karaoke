@@ -10,7 +10,7 @@ export const globalStyles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: colors.texto,
+    color: colors.textoIntermediario,
   },
   buttonText: {
     fontSize: 16,

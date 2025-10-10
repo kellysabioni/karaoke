@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import { colors } from "../styles/colors";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -46,10 +47,16 @@ export default function Login() {
           value={senha}
           onChangeText={setSenha}
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
+
         <Text style={styles.link}>Esqueceu a senha?</Text>
+        <View />
+        <View>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Entrar</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.link}>Cadastre-se?</Text>
+        </View>
       </View>
     </View>
   );
@@ -60,22 +67,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 24,
-    backgroundColor: "#fff",
-  },
-  logo: {
-    fontSize: 28,
-    textAlign: "center",
-    marginBottom: 40,
-    color: "#434343",
+    backgroundColor: "#Fafafa",
   },
   input: {
     backgroundColor: "#fafafa",
+    color: "#404040",
     borderRadius: 20,
     padding: 12,
     fontSize: 16,
-    marginBottom: 18,
-    borderWidth: 1,
-    borderColor: "#ddd",
+    marginBottom: 10,
+    borderWidth: 1.3,
+    borderColor: "#36173D",
   },
   button: {
     backgroundColor: "#FFC55A",
@@ -86,13 +88,13 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonText: {
-    color: "#22223B",
+    color: "#262626",
     fontSize: 18,
     fontWeight: "bold",
   },
   link: {
-    color: "#9A8C98",
-    textAlign: "center",
-    marginTop: 10,
+    color: "#FFC107",
+    textAlign: "right",
+    marginBottom: 18,
   },
 });
