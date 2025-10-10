@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from "react-native";
 
 export default function Login() {
@@ -19,24 +20,37 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Logo</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        value={email}
-        onChangeText={setEmail}
+      // lembre-se de adicionar Image nas imports: import{" "}
+      <Image
+        source={require("../../assets/logo.png")} // ou: { uri: 'https://exemplo.com/logo.png' }
+        style={{
+          width: 160,
+          height: 160,
+          alignSelf: "center",
+          marginBottom: 140,
+          borderRadius: 90,
+        }}
+        resizeMode="contain"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry
-        value={senha}
-        onChangeText={setSenha}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-      <Text style={styles.link}>Esqueceu a senha?</Text>
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry
+          value={senha}
+          onChangeText={setSenha}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+        <Text style={styles.link}>Esqueceu a senha?</Text>
+      </View>
     </View>
   );
 }
