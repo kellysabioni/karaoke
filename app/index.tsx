@@ -98,30 +98,38 @@ export default function Login() {
         resizeMode="contain"
       />
       <View>
-        <TextInput
-          style={styles.input}
-          placeholder="E-mail"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={email}
-          onChangeText={setEmail}
-          onBlur={validateFields}
-        />
-        {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={email}
+            onChangeText={setEmail}
+            onBlur={validateFields}
+          />
+          {emailError ? (
+            <Text style={styles.errorText}>{emailError}</Text>
+          ) : null}
 
-        <TextInput
-          style={styles.input}
-          placeholder="Senha"
-          secureTextEntry
-          value={senha}
-          onChangeText={setSenha}
-          onBlur={validateFields}
-        />
-        {senhaError ? <Text style={styles.errorText}>{senhaError}</Text> : null}
+          <TextInput
+            style={styles.input}
+            placeholder="Senha"
+            secureTextEntry
+            value={senha}
+            onChangeText={setSenha}
+            onBlur={validateFields}
+          />
+          {senhaError ? (
+            <Text style={styles.errorText}>{senhaError}</Text>
+          ) : null}
 
-        <Text style={styles.link}>Esqueceu a senha?</Text>
+          <Link href="/esqueciSenha" style={styles.link}>
+            Esqueci a senha
+          </Link>
+        </View>
 
         <View>
           <Pressable style={[styles.button]}>
