@@ -3,12 +3,12 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,
   Image,
   Alert,
+  Pressable,
 } from "react-native";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -86,7 +86,7 @@ export default function Login() {
   return (
     <View style={[styles.container, { justifyContent: "flex-start" }]}>
       <Image
-        source={require("../../assets/logo.png")}
+        source={require("../assets/logo.png")}
         style={{
           width: 180,
           height: 180,
@@ -124,19 +124,17 @@ export default function Login() {
         <Text style={styles.link}>Esqueceu a senha?</Text>
 
         <View>
-          <TouchableOpacity
-            style={[styles.button, { opacity: isButtonDisabled ? 0.6 : 1 }]}
-            disabled={isButtonDisabled}
-            onPress={handleLogin}
-          >
-            <Text style={styles.buttonText}>Entrar</Text>
-          </TouchableOpacity>
+          <Pressable style={[styles.button]}>
+            <Link href="/inicial" style={styles.buttonText}>
+              Entrar
+            </Link>
+          </Pressable>
 
           <View style={styles.link2}>
             <Text>É novo por aqui? </Text>
-            <TouchableOpacity onPress={() => router.push("/cadastro")}>
-              <Text style={styles.link}> Cadastre-se?</Text>
-            </TouchableOpacity>
+            <Link href="/cadastro" style={styles.link}>
+              Cadastre-se
+            </Link>
           </View>
         </View>
       </View>
@@ -151,9 +149,17 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: "#Fafafa",
   },
+  logo: {
+    width: 180,
+    height: 180,
+    alignSelf: "center",
+    marginTop: 90,
+    marginBottom: 90,
+    borderRadius: 90,
+  },
   input: {
     backgroundColor: "#fafafa",
-    color: "#121212",
+    color: "#201124",
     borderRadius: 20,
     padding: 12,
     fontSize: 16,
@@ -170,7 +176,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonText: {
-    color: "#262626",
+    color: "#201124",
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -183,7 +189,7 @@ const styles = StyleSheet.create({
   link2: {
     flexDirection: "row",
     justifyContent: "center",
-    color: "#262626",
+    color: "#201124",
     marginBottom: 18,
   },
   errorText: {
