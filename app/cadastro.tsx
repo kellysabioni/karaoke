@@ -168,12 +168,17 @@ export default function Cadastro() {
             <Text style={styles.buttonText}>Cadastrar</Text>
           </Pressable>
 
-          <View style={styles.link2}>
-            <Text>Já tem uma conta? </Text>
-            <Link href="/" style={styles.link}>
+          <View style={styles.separador_cont}>
+            <View style={styles.line} />
+            <Text style={styles.text}>ou</Text>
+            <View style={styles.line} />
+          </View>
+
+          <Pressable style={[styles.button2]}>
+            <Link href="/" style={styles.buttonText2}>
               Fazer login
             </Link>
-          </View>
+          </Pressable>
         </View>
       </View>
     </View>
@@ -214,7 +219,23 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonText: {
-    color: "#201124",
+    color: "#36173D",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+
+  button2: {
+    backgroundColor: "#fafafa",
+    padding: 14,
+    borderRadius: 20,
+    alignItems: "center",
+    marginBottom: 8,
+    elevation: 2,
+    borderWidth: 2,
+    borderColor: "#FFC55A",
+  },
+  buttonText2: {
+    color: "#FFC55A",
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -234,5 +255,19 @@ const styles = StyleSheet.create({
     color: "red",
     marginBottom: 8,
     alignSelf: "flex-start",
+  },
+  separador_cont: {
+    flexDirection: "row", // Alinha os itens horizontalmente
+    alignItems: "center", // Centraliza os itens verticalmente
+    marginVertical: 20, // Adiciona um espaço acima e abaixo do componente
+  },
+  line: {
+    flex: 1, // Faz a linha ocupar o espaço disponível
+    height: 0.75, // Altura da linha
+    backgroundColor: "#4E2A57", // Cor da linha
+  },
+  text: {
+    color: "#4E2A57", // Cor do texto
+    marginHorizontal: 10, // Espaço entre o texto e as linhas
   },
 });
