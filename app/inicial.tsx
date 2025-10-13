@@ -1,20 +1,69 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { colors } from "../src/styles/colors";
+import { Link } from "expo-router";
 
 type Musica = {
   id: string;
   titulo: string;
-  artista?: string;
+  artista: string;
+  estilo: string;
 };
 
 export default function Inicial() {
   const [busca, setBusca] = useState("");
-  const [musicas, setMusicas] = useState<Musica[]>([
-    { id: "1", titulo: "Música 1", artista: "Artista A" },
-    { id: "2", titulo: "Música 2", artista: "Artista B" },
-    { id: "3", titulo: "Música 3", artista: "Artista C" },
+  const [favoritos, setFavoritos] = useState<string[]>([]);
+
+  // Lista de músicas de exemplo
+  const [musicas] = useState<Musica[]>([
+    {
+      id: "1",
+      titulo: "Die With A Smile",
+      artista: "Lady Gaga & Bruno Mars",
+      estilo: "Pop",
+    },
+    {
+      id: "2",
+      titulo: "BIRDS OF A FEATHER",
+      artista: "Billie Eilish",
+      estilo: "New wave",
+    },
+    { id: "3", titulo: "Who", artista: "Jimin", estilo: "Pop" },
+    { id: "4", titulo: "Taste", artista: "Sabrina Carpenter", estilo: "Pop" },
+    {
+      id: "5",
+      titulo: "Zé da Recaída",
+      artista: "Gusttavo Lima",
+      estilo: "Sertanejo",
+    },
+    {
+      id: "6",
+      titulo: "Nothing Else Matters",
+      artista: "Metallica",
+      estilo: "Rock",
+    },
+    {
+      id: "7",
+      titulo: "Please Please Please",
+      artista: "Sabrina Carpenter",
+      estilo: "Pop",
+    },
   ]);
+
+  // Função para favoritar/desfavoritar
+  const alternarFavorito = (id: string) => {
+    setFavoritos((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
+  };
 
   // Filtra músicas de acordo com o texto digitado
   const musicasFiltradas = musicas.filter((m) =>
@@ -23,19 +72,34 @@ export default function Inicial() {
 
   const renderItem = ({ item }: { item: Musica }) => (
     <View style={estilos.card}>
-      <Text style={estilos.titulo}>{item.titulo}</Text>
-      {item.artista ? (
+      <View style={estilos.infoMusica}>
+        <Text style={estilos.titulo}>{item.titulo}</Text>
         <Text style={estilos.artista}>{item.artista}</Text>
-      ) : null}
+        <Text style={estilos.estilo}>{item.estilo}</Text>
+      </View>
+
+      {/* Botão de favoritar usando emoji */}
+      <TouchableOpacity onPress={() => alternarFavorito(item.id)}>
+        <Text style={estilos.emoji}>
+          {favoritos.includes(item.id) ? "❤️" : "🤍"}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={estilos.container}>
-      <Text style={estilos.header}>Página das Músicas</Text>
+      {/* Topo com título e botão de editar perfil */}
+      <View style={estilos.topo}>
+        <Text style={estilos.header}>Escolha sua Música</Text>
+        <Pressable style={estilos.botaoPerfil}>
+          <Link href="/perfil" style={estilos.linkPerfil}>
+            Editar Perfil
+          </Link>
+        </Pressable>
+      </View>
 
-      {/* aqui vai a lista das músicas */}
-
+      {/* Campo de pesquisa */}
       <TextInput
         style={estilos.input}
         placeholder="Pesquisar músicas..."
@@ -43,29 +107,46 @@ export default function Inicial() {
         onChangeText={setBusca}
       />
 
+      {/* Lista de músicas mais ouvidas */}
+      <Text style={estilos.subtitulo}>Músicas mais ouvidas</Text>
       <FlatList
         data={musicasFiltradas}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 20 }}
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       />
     </View>
   );
 }
 
+// Estilos
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
     padding: 24,
   },
+  topo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   header: {
     fontSize: 22,
     fontWeight: "bold",
     color: colors.primaria,
-    marginBottom: 16,
-    textAlign: "center",
+  },
+  botaoPerfil: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    backgroundColor: "#FFC55A",
+    borderRadius: 8,
+  },
+  linkPerfil: {
+    color: "#36173D",
+    fontWeight: "bold",
   },
   input: {
     width: "100%",
@@ -73,15 +154,28 @@ const estilos = StyleSheet.create({
     borderRadius: 12,
     padding: 12,
     fontSize: 16,
-    marginBottom: 16,
+    marginBottom: 12,
     borderWidth: 1.2,
     borderColor: colors.primaria,
+  },
+  subtitulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.primaria,
+    marginBottom: 8,
   },
   card: {
     backgroundColor: colors.primariaClara,
     padding: 16,
     borderRadius: 12,
     marginBottom: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  infoMusica: {
+    flex: 1,
+    marginRight: 12,
   },
   titulo: {
     fontSize: 18,
@@ -91,6 +185,12 @@ const estilos = StyleSheet.create({
   artista: {
     fontSize: 14,
     color: colors.white,
-    marginTop: 4,
+  },
+  estilo: {
+    fontSize: 12,
+    color: "#ddd",
+  },
+  emoji: {
+    fontSize: 26,
   },
 });
