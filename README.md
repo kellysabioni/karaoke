@@ -86,3 +86,4 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 - Instala o expo áudio `npx expo install expo-audio`
 - Instala o expo câmera `npx expo install expo-camera`
+- Instala o async-storage `npx expo install @react-native-async-storage/async-storage`
