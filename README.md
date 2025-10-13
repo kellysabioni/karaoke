@@ -79,3 +79,10 @@ const supabaseAnonKey = "SUA_ANON_KEY_DO_SUPABASE";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 ```
+
+---
+
+### Instalação das Apis nativas do expo
+
+- Instala o expo áudio `npx expo install expo-audio`
+- Instala o expo câmera `npx expo install expo-camera`
