@@ -68,6 +68,7 @@ Se o erro persistir, você pode usar uma flag de força, mas saiba que isso pode
 
 `npm install @supabase/supabase-js`
 `npm install --save-dev babel-plugin-dotenv`
+`npm install --save-dev @types/babel__core`
 
 Criar o arquivo conforme indicado abaixo
 
