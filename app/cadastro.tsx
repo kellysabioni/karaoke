@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import { Link, router } from "expo-router";
-import { supabase } from "../src/supabase/client";
+import { supabase } from "../src/supabase/supabase";
 
 export default function Cadastro() {
   const [nomeCompleto, setNomeCompleto] = useState("");

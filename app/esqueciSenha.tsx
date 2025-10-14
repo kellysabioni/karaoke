@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import { colors } from "../src/styles/colors";
-import { supabase } from "../src/supabase/client";
+import { supabase } from "../src/supabase/supabase";
 
 export default function EsqueciSenha() {
   const [email, setEmail] = useState("");
