@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import { colors } from "../src/styles/colors";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 type Musica = {
   id: string;
@@ -21,6 +21,7 @@ type Musica = {
 export default function Inicial() {
   const [busca, setBusca] = useState("");
   const [favoritos, setFavoritos] = useState<string[]>([]);
+  const router = useRouter();
 
   // Lista de músicas de exemplo
   const [musicas] = useState<Musica[]>([
@@ -65,10 +66,15 @@ export default function Inicial() {
     );
   };
 
-  // Filtra músicas de acordo com o texto digitado
-  const musicasFiltradas = musicas.filter((m) =>
-    m.titulo.toLowerCase().includes(busca.toLowerCase())
-  );
+  // Função para navegar para a página de resultados
+  const pesquisarMusica = () => {
+    if (busca.trim() !== "") {
+      router.push({
+        pathname: "/resultado",
+        params: { q: busca },
+      });
+    }
+  };
 
   const renderItem = ({ item }: { item: Musica }) => (
     <View style={estilos.card}>
@@ -78,7 +84,6 @@ export default function Inicial() {
         <Text style={estilos.estilo}>{item.estilo}</Text>
       </View>
 
-      {/* Botão de favoritar usando emoji */}
       <TouchableOpacity onPress={() => alternarFavorito(item.id)}>
         <Text style={estilos.emoji}>
           {favoritos.includes(item.id) ? "❤️" : "🤍"}
@@ -105,12 +110,14 @@ export default function Inicial() {
         placeholder="Pesquisar músicas..."
         value={busca}
         onChangeText={setBusca}
+        onSubmitEditing={pesquisarMusica} // Navega ao apertar Enter
+        returnKeyType="search"
       />
 
       {/* Lista de músicas mais ouvidas */}
       <Text style={estilos.subtitulo}>Músicas mais ouvidas</Text>
       <FlatList
-        data={musicasFiltradas}
+        data={musicas}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={{ paddingBottom: 100 }}
