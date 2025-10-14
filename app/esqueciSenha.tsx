@@ -38,11 +38,11 @@ export default function EsqueciSenha() {
   };
 
   return (
-    <View style={estilos.container}>
-      <Text style={estilos.titulo}>Esqueceu a Senha?</Text>
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Esqueceu a Senha?</Text>
 
       <TextInput
-        style={estilos.input}
+        style={styles.input}
         placeholder="Digite seu e-mail"
         value={email}
         onChangeText={setEmail}
@@ -50,58 +50,115 @@ export default function EsqueciSenha() {
         autoCapitalize="none"
       />
 
-      <Pressable style={estilos.botao} onPress={handleRecuperarSenha}>
-        <Text style={estilos.textoBotao}>Enviar</Text>
+      <Pressable style={styles.button} onPress={handleRecuperarSenha}>
+        <Text style={styles.buttonText}>Enviar</Text>
       </Pressable>
 
-      <Link href="/" style={estilos.link}>
-        Voltar para Login
-      </Link>
+      <View style={styles.separador_cont}>
+        <View style={styles.line} />
+        <Text style={styles.text}>ou</Text>
+        <View style={styles.line} />
+      </View>
+
+      <Pressable style={[styles.button2]}>
+        <Link href="/" style={styles.buttonText2}>
+          Fechar
+        </Link>
+      </Pressable>
     </View>
   );
 }
 
-const estilos = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 24,
-  },
+const styles = StyleSheet.create({
   titulo: {
     fontSize: 22,
     fontWeight: "bold",
     color: colors.primaria,
     marginBottom: 24,
   },
+
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 24,
+    backgroundColor: "#Fafafa",
+  },
+  logo: {
+    width: 180,
+    height: 180,
+    alignSelf: "center",
+    marginTop: 90,
+    marginBottom: 90,
+    borderRadius: 90,
+  },
   input: {
-    width: "100%",
-    backgroundColor: "#f2f2f2",
-    borderRadius: 12,
+    backgroundColor: "#fafafa",
+    color: "#201124",
+    borderRadius: 20,
     padding: 12,
     fontSize: 16,
-    marginBottom: 16,
-    borderWidth: 1.2,
-    borderColor: colors.primaria,
+    marginBottom: 10,
+    borderWidth: 1.3,
+    borderColor: "#36173D",
   },
-  botao: {
-    backgroundColor: colors.secundaria,
+  button: {
+    backgroundColor: "#FFC55A",
     padding: 14,
     borderRadius: 20,
     alignItems: "center",
-    width: "100%",
-    marginBottom: 16,
+    marginBottom: 8,
+    elevation: 2,
   },
-  textoBotao: {
-    color: "#fff",
-    fontSize: 16,
+  buttonText: {
+    color: "#36173D",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+
+  button2: {
+    backgroundColor: "#fafafa",
+    padding: 14,
+    borderRadius: 20,
+    alignItems: "center",
+    marginBottom: 8,
+    elevation: 2,
+    borderWidth: 2,
+    borderColor: "#FFC55A",
+  },
+  buttonText2: {
+    color: "#FFC55A",
+    fontSize: 18,
     fontWeight: "bold",
   },
   link: {
-    color: colors.secundariaEscura,
-    fontSize: 16,
-    marginTop: 8,
-    textAlign: "center",
+    color: "#FFC107",
+    textAlign: "right",
+    marginTop: 1,
+    marginBottom: 18,
+  },
+  link2: {
+    flexDirection: "row",
+    justifyContent: "center",
+    color: "#201124",
+    marginBottom: 18,
+  },
+  errorText: {
+    color: "red",
+    marginBottom: 8,
+    alignSelf: "flex-start",
+  },
+  separador_cont: {
+    flexDirection: "row", // Alinha os itens horizontalmente
+    alignItems: "center", // Centraliza os itens verticalmente
+    marginVertical: 20, // Adiciona um espaço acima e abaixo do componente
+  },
+  line: {
+    flex: 1, // Faz a linha ocupar o espaço disponível
+    height: 0.75, // Altura da linha
+    backgroundColor: "#4E2A57", // Cor da linha
+  },
+  text: {
+    color: "#4E2A57", // Cor do texto
+    marginHorizontal: 10, // Espaço entre o texto e as linhas
   },
 });
