@@ -23,7 +23,6 @@ export default function Inicial() {
   const [favoritos, setFavoritos] = useState<string[]>([]);
   const router = useRouter();
 
-  // Lista de músicas de exemplo
   const [musicas] = useState<Musica[]>([
     {
       id: "1",
@@ -59,14 +58,12 @@ export default function Inicial() {
     },
   ]);
 
-  // Função para favoritar/desfavoritar
   const alternarFavorito = (id: string) => {
     setFavoritos((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
   };
 
-  // Função para navegar para a página de resultados
   const pesquisarMusica = () => {
     if (busca.trim() !== "") {
       router.push({
@@ -104,15 +101,25 @@ export default function Inicial() {
         </Pressable>
       </View>
 
-      {/* Campo de pesquisa */}
-      <TextInput
-        style={estilos.input}
-        placeholder="Pesquisar músicas..."
-        value={busca}
-        onChangeText={setBusca}
-        onSubmitEditing={pesquisarMusica} // Navega ao apertar Enter
-        returnKeyType="search"
-      />
+      {/* Campo de pesquisa com botão "X" */}
+      <View style={estilos.inputContainer}>
+        <TextInput
+          style={estilos.input}
+          placeholder="Pesquisar músicas..."
+          value={busca}
+          onChangeText={setBusca}
+          onSubmitEditing={pesquisarMusica}
+          returnKeyType="search"
+        />
+        {busca.length > 0 && (
+          <TouchableOpacity
+            style={estilos.clearButton}
+            onPress={() => setBusca("")}
+          >
+            <Text style={estilos.clearText}>✕</Text>
+          </TouchableOpacity>
+        )}
+      </View>
 
       {/* Lista de músicas mais ouvidas */}
       <Text style={estilos.subtitulo}>Músicas mais ouvidas</Text>
@@ -155,15 +162,27 @@ const estilos = StyleSheet.create({
     color: "#36173D",
     fontWeight: "bold",
   },
+  inputContainer: {
+    position: "relative",
+    marginBottom: 12,
+  },
   input: {
     width: "100%",
     backgroundColor: "#f2f2f2",
     borderRadius: 12,
     padding: 12,
     fontSize: 16,
-    marginBottom: 12,
     borderWidth: 1.2,
     borderColor: colors.primaria,
+  },
+  clearButton: {
+    position: "absolute",
+    right: 12,
+    top: 12,
+  },
+  clearText: {
+    fontSize: 18,
+    color: "#36173D",
   },
   subtitulo: {
     fontSize: 18,
