@@ -171,6 +171,7 @@ const estilos = StyleSheet.create({
     backgroundColor: "#f2f2f2",
     borderRadius: 12,
     padding: 12,
+    paddingRight: 40,
     fontSize: 16,
     borderWidth: 1.2,
     borderColor: colors.primaria,
@@ -178,7 +179,8 @@ const estilos = StyleSheet.create({
   clearButton: {
     position: "absolute",
     right: 12,
-    top: 12,
+    top: "50%",
+    transform: [{ translateY: -12 }],
   },
   clearText: {
     fontSize: 18,
